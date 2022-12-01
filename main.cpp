@@ -1,10 +1,16 @@
 #include <iostream>
-#include "Prototype.cpp"
-#include "Proxy.cpp"
+#include "Vistor.cpp"
 
 int main(){
-    Proxy* proxy = new Proxy();
-    proxy->request();
-    delete proxy;
+    Element* elementA = new ConcreteElementA();
+    Element* elementB = new ConcreteElementB();
+
+    Visitor1 visitor1;
+    Visitor2 visitor2;
+
+    elementA->accept(&visitor1);
+    elementA->accept(&visitor2);
+    elementB->accept(&visitor1);
+    elementB->accept(&visitor2);
     return 0;
 }
